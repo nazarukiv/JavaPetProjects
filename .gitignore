@@ -1,0 +1,36 @@
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# Build directories
+target/
+bin/
+build/
+
+# Logs and temp
+*.log
+*.tmp
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Gradle
+.gradle/
+*.gradle
+gradle-app.setting
+
+# Maven
+.mvn/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+
+# Cache
+*.class
