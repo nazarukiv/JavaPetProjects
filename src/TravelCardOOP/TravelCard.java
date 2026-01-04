@@ -1,5 +1,7 @@
 package TravelCardOOP;
 
+import java.util.ArrayList;
+
 public class TravelCard {
 
     //count needs to be implemented
@@ -8,11 +10,14 @@ public class TravelCard {
     private double balance;
     private Status cardStatus;
 
+    private ArrayList<Journey> journeyHistory;
+
 
     public TravelCard(long id, double balance, Status cardStatus){
         this.id=id;
         this.balance = balance;
         this.cardStatus=cardStatus;
+        this.journeyHistory = new ArrayList<>();
     }
 
     //main methods
@@ -41,21 +46,28 @@ public class TravelCard {
 
     }
 
-    public void touchOut(Station station){ //need implementation
+    public void touchOut(Station station) {
         if (station == null) {
             throw new IllegalArgumentException("Station cannot be null");
         }
-
-        if (currentJourney == null){
-            throw new IllegalStateException("not in journey");
+        if (currentJourney == null) {
+            throw new IllegalStateException("Not in journey");
         }
 
         currentJourney.complete(station);
+        charge(currentJourney.getFareCharged());
+        journeyHistory.add(currentJourney);
         currentJourney = null;
     }
 
     private void charge(double amount){
-        balance-=amount;
+        if (amount < 0) {
+            throw new IllegalArgumentException("Charge amount cannot be negative");
+        }
+        if (balance < amount) {
+            throw new IllegalStateException("Not enough balance");
+        }
+        balance -= amount;
     }
 
     //getters
@@ -73,6 +85,10 @@ public class TravelCard {
 
     public Journey getCurrentJourney() {
         return currentJourney;
+    }
+
+    public ArrayList<Journey> getJourneyHistory() {
+        return journeyHistory;
     }
 
     //setters
