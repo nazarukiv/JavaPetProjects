@@ -47,5 +47,17 @@ public class Journey {
         return fareCharged;
     }
 
+    @Override
+    public String toString() {
+        return "Journey{" +
+                "from=" + fromStation +
+                ", to=" + toStation +
+                ", in=" + touchInTime +
+                ", out=" + touchOutTime +
+                ", fare=" + fareCharged +
+                ", status=" + status +
+                '}';
+    }
+
 }
 

@@ -11,6 +11,7 @@ public class TravelCard {
     private Status cardStatus;
 
     private ArrayList<Journey> journeyHistory;
+    private static final double MIN_FARE = 2.0;
 
 
     public TravelCard(long id, double balance, Status cardStatus){
@@ -42,6 +43,9 @@ public class TravelCard {
             throw new IllegalStateException("Already in journey");
         }
 
+        if (balance < MIN_FARE) {
+            throw new IllegalStateException("Not enough balance to start journey");
+        }
         currentJourney = new Journey(station);
 
     }
